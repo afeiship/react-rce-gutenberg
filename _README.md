@@ -33,3 +33,4 @@ BACKUP_USAGE
 - https://github.com/front/gutenberg-js
 - https://medium.com/@csofiamsousa/gutenberg-js-gutenberg-editor-is-out-of-the-box-a913188f22d1
 - https://wordpress.org/gutenberg/
+- https://editorblockswp.com/library/

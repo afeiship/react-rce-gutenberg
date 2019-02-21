@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import noop from 'noop';
 import objectAssign from 'object-assign';
-import { editor } from '@frontkom/gutenberg-js';
+
 // Don't forget to import the style
+import 'moment/min/moment.min.js';
+import 'jquery/dist/jquery.min.js';
+import { editPost } from '@frontkom/gutenberg-js';
 import '@frontkom/gutenberg-js/build/css/block-library/style.css';
 import '@frontkom/gutenberg-js/build/css/style.css';
-
-const { AlignmentToolbar, BlockControls, RichText } = editor;
 
 // Registering Custom Blocks
 
@@ -32,6 +33,29 @@ export default class extends Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    console.log('cdm');
+    const settings = {
+      alignWide: true,
+      availableTemplates: [],
+      allowedBlockTypes: true,
+      disableCustomColors: false,
+      disablePostFormats: false,
+      titlePlaceholder: 'Add title',
+      bodyPlaceholder: 'Insert your custom block',
+      isRTL: false,
+      autosaveInterval: 10,
+      canPublish: false,
+      canSave: true,
+      canAutosave: true,
+      mediaLibrary: true,
+      postLock: {
+        isLocked: false
+      }
+    };
+    editPost.initializeEditor('editor', 'page', 1, settings, {});
+  }
+
   _onChange = (e) => {
     console.log(e);
   };
@@ -40,9 +64,7 @@ export default class extends Component {
     const { className, ...props } = this.props;
     return (
       <div className={classNames('react-rce-gutenberg', className)} {...props}>
-        <AlignmentToolbar />
-        <BlockControls />
-        <RichText onChange={this._onChange} />
+        <div id="editor" className="gutenberg__editor" />
       </div>
     );
   }
