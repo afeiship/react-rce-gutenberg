@@ -34,3 +34,8 @@ BACKUP_USAGE
 - https://medium.com/@csofiamsousa/gutenberg-js-gutenberg-editor-is-out-of-the-box-a913188f22d1
 - https://wordpress.org/gutenberg/
 - https://editorblockswp.com/library/
+
+
+## wp plugin:
+- http://jschof.com/gutenberg-blocks/using-canvas-to-create-a-doodle-pad-gutenberg-block/
+- https://github.com/ahmadawais/create-guten-block
