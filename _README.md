@@ -34,6 +34,9 @@ BACKUP_USAGE
 - https://medium.com/@csofiamsousa/gutenberg-js-gutenberg-editor-is-out-of-the-box-a913188f22d1
 - https://wordpress.org/gutenberg/
 - https://editorblockswp.com/library/
+- https://stackblitz.com/edit/gutenberg-editor?file=index.html
+- https://github.com/front/gutenberg-js/issues/7
+- https://github.com/arnvanhoutte/ng-gutenberg.git
 
 
 ## wp plugin:

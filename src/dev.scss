@@ -9,11 +9,11 @@ button{
 }
 
 @import './components/style.scss';
+// // Gutenberg JS Style
+// @import '~@frontkom/gutenberg-js/build/css/block-library/style.css';
+// @import '~@frontkom/gutenberg-js/build/css/style.css';
 
 .hello-react-rce-gutenberg{
-  color:#F00;
-  padding:50px 20px;
-
   .button{
     border: none;
     display: block;

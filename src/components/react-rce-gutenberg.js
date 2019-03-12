@@ -5,14 +5,13 @@ import classNames from 'classnames';
 import noop from 'noop';
 import objectAssign from 'object-assign';
 
-// Don't forget to import the style
-import 'moment/min/moment.min.js';
-import 'jquery/dist/jquery.min.js';
-import { editPost } from '@frontkom/gutenberg-js';
+// Registering Custom Blocks
+import { data, editPost, domReady } from '@frontkom/gutenberg-js';
+
+// Gutenberg JS Style
 import '@frontkom/gutenberg-js/build/css/block-library/style.css';
 import '@frontkom/gutenberg-js/build/css/style.css';
 
-// Registering Custom Blocks
 
 export default class extends Component {
   /*===properties start===*/
@@ -28,13 +27,7 @@ export default class extends Component {
   };
   /*===properties end===*/
 
-  constructor(inProps) {
-    super(inProps);
-    this.state = {};
-  }
-
   componentDidMount() {
-    console.log('cdm');
     const settings = {
       alignWide: true,
       availableTemplates: [],
@@ -44,21 +37,29 @@ export default class extends Component {
       titlePlaceholder: 'Add title',
       bodyPlaceholder: 'Insert your custom block',
       isRTL: false,
-      autosaveInterval: 10,
-      canPublish: false,
-      canSave: true,
-      canAutosave: true,
-      mediaLibrary: true,
+      autosaveInterval: 0,
       postLock: {
         isLocked: false
-      }
+      },
+      canPublish: false,
+      canSave: false,
+      canAutosave: false,
+      mediaLibrary: true
     };
-    editPost.initializeEditor('editor', 'page', 1, settings, {});
-  }
 
-  _onChange = (e) => {
-    console.log(e);
-  };
+    // reset localStorage
+    localStorage.removeItem('g-editor-page');
+
+    // Disable tips
+    data.dispatch('core/nux').disableTips();
+
+    // Initialize the editor
+    window._wpLoadGutenbergEditor = new Promise(function(resolve) {
+      domReady(function() {
+        resolve(editPost.initializeEditor('editor', 'page', 1, settings, {}));
+      });
+    });
+  }
 
   render() {
     const { className, ...props } = this.props;

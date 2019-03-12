@@ -1,4 +1,5 @@
 import './dev.scss';
+import './globals';
 import ReactRceGutenberg from './main';
 
 /*===example start===*/
@@ -6,29 +7,24 @@ import ReactRceGutenberg from './main';
 // install: npm install afeiship/react-rce-gutenberg --save
 // import : import ReactRceGutenberg from 'react-rce-gutenberg'
 
-class App extends React.Component{
-  state = {
+class App extends React.Component {
+  state = {};
 
-  };
-
-  constructor(props){
+  constructor(props) {
     super(props);
     window.demo = this;
     window.refs = this.refs;
     window.rc = this.refs.rc;
   }
 
-  render(){
+  render() {
     return (
       <div className="hello-react-rce-gutenberg">
-        <ReactRceGutenberg ref='rc' />
+        <ReactRceGutenberg ref="rc" />
       </div>
     );
   }
 }
 /*===example end===*/
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('app')
-);
+ReactDOM.render(<App />, document.getElementById('app'));
