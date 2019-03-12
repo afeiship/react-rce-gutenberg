@@ -57,10 +57,6 @@ export const getMedias = (n = 3) => {
 
 export const themes = [
   {
-    theme_supports: {
-      formats: ['standard', 'aside', 'image', 'quote', 'link'],
-      'post-thumbanials': true,
-      'responsive-embeds': true
-    }
+    theme_supports: {}
   }
 ];

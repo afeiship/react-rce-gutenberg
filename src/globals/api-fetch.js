@@ -9,7 +9,6 @@ const apiFetch = (options) => {
   console.log('api fetch:->', options);
   switch (options.path) {
     case '/wp/v2/types?context=edit':
-      console.log(pageType);
       res = { page: pageType };
       break;
     case '/wp/v2/types/page?context=edit':
@@ -28,7 +27,7 @@ const apiFetch = (options) => {
           // update content
           content: {
             raw: options.data.content,
-            rendered: options.data.content.replace(/(<!--.*?-->)/g, '')
+            // rendered: options.data.content.replace(/(<!--.*?-->)/g, '')
           }
         };
 
