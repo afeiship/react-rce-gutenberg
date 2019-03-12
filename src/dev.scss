@@ -1,12 +1,12 @@
-*{margin: 0;padding:0;box-sizing: border-box;}
-ul,li{list-style: none;}
-button{
-  border: none;
-  background: no-clip;
-  &:focus{
-    outline: none;
-  }
-}
+// *{margin: 0;padding:0;box-sizing: border-box;}
+// ul,li{list-style: none;}
+// button{
+//   border: none;
+//   background: no-clip;
+//   &:focus{
+//     outline: none;
+//   }
+// }
 
 @import './components/style.scss';
 // // Gutenberg JS Style

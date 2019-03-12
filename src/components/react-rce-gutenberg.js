@@ -12,7 +12,6 @@ import { data, editPost, domReady } from '@frontkom/gutenberg-js';
 import '@frontkom/gutenberg-js/build/css/block-library/style.css';
 import '@frontkom/gutenberg-js/build/css/style.css';
 
-
 export default class extends Component {
   /*===properties start===*/
   static propTypes = {
@@ -32,19 +31,19 @@ export default class extends Component {
       alignWide: true,
       availableTemplates: [],
       allowedBlockTypes: true,
-      disableCustomColors: false,
+      disableCustomColors: true,
       disablePostFormats: false,
       titlePlaceholder: 'Add title',
       bodyPlaceholder: 'Insert your custom block',
       isRTL: false,
-      autosaveInterval: 0,
+      autosaveInterval: 10,
+      canPublish: false,
+      canSave: true,
+      canAutosave: true,
+      mediaLibrary: false,
       postLock: {
         isLocked: false
-      },
-      canPublish: false,
-      canSave: false,
-      canAutosave: false,
-      mediaLibrary: true
+      }
     };
 
     // reset localStorage
