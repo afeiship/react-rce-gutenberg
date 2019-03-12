@@ -13,19 +13,6 @@ import { data, editPost, domReady } from '@frontkom/gutenberg-js';
 // import '@frontkom/gutenberg-js/build/css/style.css';
 
 export default class extends Component {
-  /*===properties start===*/
-  static propTypes = {
-    className: PropTypes.string,
-    value: PropTypes.object,
-    onChange: PropTypes.func
-  };
-
-  static defaultProps = {
-    value: null,
-    onChange: noop
-  };
-  /*===properties end===*/
-
   componentDidMount() {
     const settings = {
       alignWide: true,
@@ -50,7 +37,7 @@ export default class extends Component {
     localStorage.removeItem('g-editor-page');
 
     // Disable tips
-    // data.dispatch('core/nux').disableTips();
+    data.dispatch('core/nux').disableTips();
 
     // Initialize the editor
     window._wpLoadGutenbergEditor = new Promise(function(resolve) {

@@ -3,37 +3,16 @@ const tmpl1 = require('./template1.html');
 
 export const pageType = {
   id: 1,
-  name: 'Pages',
   rest_base: 'pages',
   slug: 'page',
   supports: {
-    author: false,
-    comments: false,
-    'custom-fields': false,
-    discussion: false,
-    editor: true,
-    excerpt: false,
-    'page-attributes': false,
-    revisions: false,
-    thumbnail: false,
     title: false
-  },
-  viewable: false
+  }
 };
 
 export const page = {
   id: 1,
   content: {
-    raw: tmpl1,
-    rendered: ''
-  },
-  date,
-  date_gmt: date,
-  title: {
-    raw: 'Preview page',
-    rendered: 'Preview page'
-  },
-  excerpt: {
     raw: '',
     rendered: ''
   },
@@ -46,11 +25,7 @@ export const page = {
   categories: [],
   featured_media: 0,
   permalink_template: `${window.location.origin}/preview`,
-  preview_link: `${window.location.origin}/preview`,
-  _links: {
-    'wp:action-assign-categories': [],
-    'wp:action-create-categories': []
-  }
+  preview_link: `${window.location.origin}/preview`
 };
 
 export const getMedias = (n = 3) => {
@@ -85,7 +60,7 @@ export const themes = [
     theme_supports: {
       formats: ['standard', 'aside', 'image', 'quote', 'link'],
       'post-thumbanials': true,
-      'responsive-embeds': false
+      'responsive-embeds': true
     }
   }
 ];

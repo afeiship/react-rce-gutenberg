@@ -84,7 +84,7 @@ export const settings = {
           <PanelBody title={__('Settings')} initialOpen={true}>
             <input
               value={tid}
-              placeholder={'图表的 id '}
+              placeholder={'图表的URL'}
               onChange={(event) => setAttributes({ tid: event.target.value })}
             />
           </PanelBody>
