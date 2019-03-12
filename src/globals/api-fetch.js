@@ -2,16 +2,14 @@ import { page, pageType, getMedias, themes } from './fake-data.js';
 
 const medias = getMedias();
 
-const apiFetch = options => {
-  // console.log(options.path, options);
-
+const apiFetch = (options) => {
   let res = {};
   let item = {};
 
-  console.log('api fetch->', options);
-
+  console.log('api fetch:->', options);
   switch (options.path) {
     case '/wp/v2/types?context=edit':
+      console.log(pageType);
       res = { page: pageType };
       break;
     case '/wp/v2/types/page?context=edit':
@@ -30,8 +28,8 @@ const apiFetch = options => {
           // update content
           content: {
             raw: options.data.content,
-            rendered: options.data.content.replace(/(<!--.*?-->)/g, ''),
-          },
+            rendered: options.data.content.replace(/(<!--.*?-->)/g, '')
+          }
         };
 
         localStorage.setItem('g-editor-page', JSON.stringify(item));
@@ -46,15 +44,14 @@ const apiFetch = options => {
       if (options.method === 'OPTIONS') {
         res = {
           headers: {
-            get: value => {
+            get: (value) => {
               if (value === 'allow') {
-                return [ 'POST' ];
+                return ['POST'];
               }
-            },
-          },
+            }
+          }
         };
-      }
-      else {
+      } else {
         res = medias[Math.floor(Math.random() * medias.length) + 0];
       }
 
@@ -66,8 +63,9 @@ const apiFetch = options => {
       break;
   }
 
-  console.log('res:->',res);
-  return new Promise(resolve => { resolve(res); });
+  return new Promise((resolve) => {
+    resolve(res);
+  });
 };
 
 export default apiFetch;

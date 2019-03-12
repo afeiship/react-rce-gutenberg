@@ -16,7 +16,7 @@ const { __ } = i18n;
 const { PanelBody, FontSizePicker } = components;
 const { InspectorControls, PanelColorSettings, PlainText, RichText } = editor;
 
-console.log(editor);
+// console.log(editor);
 
 // TODO: Add here the editable block attributes
 const BLOCK_ATTRIBUTES = {
@@ -34,7 +34,7 @@ const BLOCK_ATTRIBUTES = {
     type: 'string'
   },
   tid: {
-    type: 'number',
+    type: 'string',
     default: 'https://echarts.baidu.com/examples/editor.html?c=area-basic'
   },
   backgroundColor: {
@@ -75,7 +75,7 @@ export const settings = {
         {/* Block markup (main editor) */}
         <div className={className} style={containerStyle}>
           <center>
-            <iframe width={'80%'} height={400} src={tid} frameborder="0" />
+            <iframe width={'100%'} height={400} src={tid} frameborder="0" />
           </center>
         </div>
 
