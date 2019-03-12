@@ -50,13 +50,11 @@ export default class extends Component {
     localStorage.removeItem('g-editor-page');
 
     // Disable tips
-    data.dispatch('core/nux').disableTips();
+    // data.dispatch('core/nux').disableTips();
 
     // Initialize the editor
     window._wpLoadGutenbergEditor = new Promise(function(resolve) {
-      domReady(function() {
-        resolve(editPost.initializeEditor('editor', 'page', 1, settings, {}));
-      });
+      resolve(editPost.initializeEditor('editor', 'page', 1, settings, {}));
     });
   }
 

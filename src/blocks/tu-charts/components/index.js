@@ -18,7 +18,6 @@ const { InspectorControls, PanelColorSettings, PlainText, RichText } = editor;
 
 console.log(editor);
 
-
 // TODO: Add here the editable block attributes
 const BLOCK_ATTRIBUTES = {
   title: {
@@ -35,7 +34,8 @@ const BLOCK_ATTRIBUTES = {
     type: 'string'
   },
   tid: {
-    type: 'number'
+    type: 'number',
+    default: 'https://echarts.baidu.com/examples/editor.html?c=area-basic'
   },
   backgroundColor: {
     type: 'string'
@@ -56,12 +56,12 @@ export const settings = {
 
   description: __('A custom block for Gutenberg tss-blocks'),
 
-  icon: 'cover-image',
+  icon: <img width={32} src={'https://i.stack.imgur.com/qYN3I.png'} />,
 
   attributes: BLOCK_ATTRIBUTES,
 
   edit({ attributes, className, setAttributes }) {
-    const { title, fontSize, fontColor, backgroundColor } = attributes;
+    const { title, fontSize, tid, fontColor, backgroundColor } = attributes;
     const containerStyle = {
       backgroundColor
     };
@@ -75,40 +75,19 @@ export const settings = {
         {/* Block markup (main editor) */}
         <div className={className} style={containerStyle}>
           <center>
-            <img
-              width="500"
-              src="https://ws2.sinaimg.cn/large/006tKfTcly1g0zw9slwi2j30rs0jgwfb.jpg"
-            />
+            <iframe width={'80%'} height={400} src={tid} frameborder="0" />
           </center>
         </div>
 
         <InspectorControls>
           {/* Block settings (sidebar) */}
           <PanelBody title={__('Settings')} initialOpen={true}>
-            <FontSizePicker
-              fontSizes={FONT_SIZES}
-              fallbackFontSize={56}
-              value={fontSize}
-              onChange={(value) => setAttributes({ fontSize: value })}
+            <input
+              value={tid}
+              placeholder={'图表的 id '}
+              onChange={(event) => setAttributes({ tid: event.target.value })}
             />
           </PanelBody>
-
-          <PanelColorSettings
-            title={__('Color Settings')}
-            initialOpen={false}
-            colorSettings={[
-              {
-                value: backgroundColor,
-                onChange: (value) => setAttributes({ fontColor: value }),
-                label: __('Font Color')
-              },
-              {
-                value: backgroundColor,
-                onChange: (value) => setAttributes({ backgroundColor: value }),
-                label: __('Background Color')
-              }
-            ]}
-          />
         </InspectorControls>
       </Fragment>
     );
@@ -127,7 +106,6 @@ export const settings = {
     return (
       <div className={className} style={containerStyle}>
         <tuchart />
-        {/* <RichText.Content tagName="h1" style={titleStyle} value={title} /> */}
       </div>
     );
   }
