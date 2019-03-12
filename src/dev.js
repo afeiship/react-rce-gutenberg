@@ -1,7 +1,7 @@
 import './dev.scss';
 import './globals';
 import ReactRceGutenberg from './main';
-
+import './blocks/tu-charts/index'
 /*===example start===*/
 
 // install: npm install afeiship/react-rce-gutenberg --save

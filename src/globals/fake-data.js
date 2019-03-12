@@ -40,7 +40,7 @@ export const page = {
   theme_style: true,
   type: 'page',
   link: `${window.location.origin}/preview`,
-  categories: [ ],
+  categories: [],
   featured_media: 0,
   permalink_template: `${window.location.origin}/preview`,
   preview_link: `${window.location.origin}/preview`,
@@ -51,7 +51,7 @@ export const page = {
 };
 
 export const getMedias = (n = 3) => {
-  return Array(n).fill().map((i, index) => {
+  return Array(n).fill("").map((i, index) => {
     const id = index + 1;
 
     return {

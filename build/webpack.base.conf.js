@@ -15,6 +15,7 @@ var externals = process.env.NODE_ENV === 'production' ? {
   'classnames': 'classnames',
   'react-dom': 'react-dom',
   'noop':'noop',
+  '@frontkom/gutenberg-js':'@frontkom/gutenberg-js',
   'mixin-decorator': 'mixin-decorator',
   'object-assign':'object-assign',
   'prop-types':'prop-types',

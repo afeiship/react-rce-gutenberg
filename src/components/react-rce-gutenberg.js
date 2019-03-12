@@ -9,8 +9,8 @@ import objectAssign from 'object-assign';
 import { data, editPost, domReady } from '@frontkom/gutenberg-js';
 
 // Gutenberg JS Style
-import '@frontkom/gutenberg-js/build/css/block-library/style.css';
-import '@frontkom/gutenberg-js/build/css/style.css';
+// import '@frontkom/gutenberg-js/build/css/block-library/style.css';
+// import '@frontkom/gutenberg-js/build/css/style.css';
 
 export default class extends Component {
   /*===properties start===*/

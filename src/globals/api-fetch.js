@@ -8,6 +8,8 @@ const apiFetch = options => {
   let res = {};
   let item = {};
 
+  console.log('api fetch->', options);
+
   switch (options.path) {
     case '/wp/v2/types?context=edit':
       res = { page: pageType };
@@ -18,9 +20,11 @@ const apiFetch = options => {
     case '/wp/v2/pages/1?context=edit':
       res = JSON.parse(localStorage.getItem('g-editor-page')) || page;
       break;
+    case '/wp/v2/pages/1':
     case '/wp/v2/pages/1/autosaves':
       item = JSON.parse(localStorage.getItem('g-editor-page')) || page;
       if (options.data) {
+        // window.save(options.data.content);
         item = {
           ...item,
           // update content
@@ -62,7 +66,7 @@ const apiFetch = options => {
       break;
   }
 
-  // console.log(res);
+  console.log('res:->',res);
   return new Promise(resolve => { resolve(res); });
 };
 
