@@ -1,0 +1,25 @@
+// The class name needs to match the names of the category and block
+.wp-block {
+  &[data-type='tssblocks/tu-chart'] {
+    border: 1px solid #000;
+    //padding: 40px;
+
+    &:hover {
+      border-color: cornflowerblue;
+    }
+  }
+}
+
+.tu-chart-settings {
+  .row {
+    display: block;
+    margin-bottom: 10px;
+    strong{
+      width: 40px;
+      display: inline-block;
+    }
+    input,textarea{
+      width: 180px;
+    }
+  }
+}

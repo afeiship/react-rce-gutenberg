@@ -20,7 +20,6 @@ export function registerBlocks () {
   // Add the new category to the list
   const currentCategories = select('core/blocks').getCategories().filter(item => item.slug !== category.slug);
   dispatch('core/blocks').setCategories([ category, ...currentCategories ]);
-  console.log(select('core/blocks'));
   // TODO: Register each block
   registerBlockType(`${category.slug}/${block1.name}`, { category: category.slug, ...block1.settings });
 }
