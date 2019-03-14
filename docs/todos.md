@@ -22,3 +22,22 @@
 - [ ] 目前，拼音输入时，1~3个字幕会被默认英文输入(这个可能是 autosave/输入法 造成的?)
 - [x] 可以去掉一些不要的 blocks(但底下会报错)
  
+
+
+## 对每个块的样式进行定制：
+```js
+// https://wordpress.org/gutenberg/handbook/designers-developers/developers/filters/block-filters/
+// Our filter function
+function setBlockCustomClassName( className, blockName ) {
+    return blockName === 'core/code' ?
+        'my-plugin-code' :
+        className;
+}
+
+// Adding the filter
+wp.hooks.addFilter(
+    'blocks.getBlockDefaultClassName',
+    'my-plugin/set-block-custom-class-name',
+    setBlockCustomClassName
+);
+```

@@ -15,7 +15,6 @@ const category = {
   title: __('TSS Blocks')
 };
 
-
 const category2 = {
   slug: 'tsstemplates', // needs to match the css class of the block container: ".wp-block-cloudblocks-[block-name]"
   title: __('TSS Templates')
@@ -28,7 +27,7 @@ export function registerBlocks() {
     .getCategories()
     .filter((item) => item.slug !== category.slug);
   console.log(currentCategories);
-  // dispatch('core/blocks').setCategories([category, ...currentCategories.slice(0, 3)]);
+  // dispatch('core/blocks').setCategories([category, ...currentCategories.slice(0, 4)]);
   dispatch('core/blocks').setCategories([category, category2, ...currentCategories]);
   // TODO: Register each block
   registerBlockType(`${category.slug}/${block1.name}`, {
@@ -109,3 +108,10 @@ registerBlockType('myplugin/template', {
     return el(InnerBlocks.Content, {});
   }
 });
+
+
+
+const currentCategories = select('core/blocks')
+console.log(currentCategories);
+// wp.blocks.unregisterBlockStyle('core/embed');
+// wp.blocks.unregisterBlockType('core/embed');
