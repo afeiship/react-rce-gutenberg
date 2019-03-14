@@ -15,6 +15,12 @@ const category = {
   title: __('TSS Blocks')
 };
 
+
+const category2 = {
+  slug: 'tsstemplates', // needs to match the css class of the block container: ".wp-block-cloudblocks-[block-name]"
+  title: __('TSS Templates')
+};
+
 // Register the new category and blocks
 export function registerBlocks() {
   // Add the new category to the list
@@ -22,7 +28,8 @@ export function registerBlocks() {
     .getCategories()
     .filter((item) => item.slug !== category.slug);
   console.log(currentCategories);
-  dispatch('core/blocks').setCategories([category, ...currentCategories.slice(0, 3)]);
+  // dispatch('core/blocks').setCategories([category, ...currentCategories.slice(0, 3)]);
+  dispatch('core/blocks').setCategories([category, category2, ...currentCategories]);
   // TODO: Register each block
   registerBlockType(`${category.slug}/${block1.name}`, {
     category: category.slug,
@@ -62,6 +69,7 @@ export function registerBlocks() {
         <RichText
           tagName="p"
           className={className}
+          placeholder={'为TSS定制的?'}
           style={{ textAlign: alignment }}
           onChange={onChangeContent}
           value={content}
@@ -81,3 +89,23 @@ export function registerBlocks() {
 registerBlocks();
 
 // import { blocks, editor } from '@frontkom/gutenberg-js';
+
+const el = wp.element.createElement;
+// const { registerBlockType } = wp.blocks;
+const { InnerBlocks } = wp.editor;
+
+const BLOCKS_TEMPLATE = [['core/image', {}], ['core/paragraph', { placeholder: 'Image Details' }]];
+
+registerBlockType('myplugin/template', {
+  title: 'My Template Block',
+  category: category2.slug,
+  edit: (props) => {
+    return el(InnerBlocks, {
+      template: BLOCKS_TEMPLATE,
+      templateLock: false
+    });
+  },
+  save: (props) => {
+    return el(InnerBlocks.Content, {});
+  }
+});

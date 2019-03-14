@@ -12,8 +12,6 @@ import './style.scss';
 const { Fragment } = element;
 const { __ } = i18n;
 
-
-
 // TODO: Chooose components for the sidebar settings
 const { PanelBody } = components;
 const { InspectorControls } = editor;
@@ -44,6 +42,22 @@ export const settings = {
   description: __('A custom block for Gutenberg tss-blocks'),
   icon: <img width={24} src={'https://i.stack.imgur.com/qYN3I.png'} />,
   attributes: BLOCK_ATTRIBUTES,
+  styles: [
+    // Mark style as default.
+    {
+      name: 'default',
+      label: __('Rounded'),
+      isDefault: true
+    },
+    {
+      name: 'outline',
+      label: __('Outline')
+    },
+    {
+      name: 'squared',
+      label: __('Squared')
+    }
+  ],
   edit({ attributes, className, setAttributes }) {
     const { title, description, tid } = attributes;
 
@@ -54,7 +68,12 @@ export const settings = {
           {tid && (
             <iframe className={className} width={'100%'} height={400} src={tid} frameBorder="0" />
           )}
-          {!tid && <img width={'80%'} src="https://ws2.sinaimg.cn/large/006tKfTcly1g0zw9slwi2j30rs0jgwfb.jpg" />}
+          {!tid && (
+            <img
+              width={'80%'}
+              src="https://ws2.sinaimg.cn/large/006tKfTcly1g0zw9slwi2j30rs0jgwfb.jpg"
+            />
+          )}
         </div>
         <InspectorControls>
           {/* Block settings (sidebar) */}
