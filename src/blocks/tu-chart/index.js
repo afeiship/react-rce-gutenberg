@@ -21,14 +21,13 @@ export function registerBlocks() {
   const currentCategories = select('core/blocks')
     .getCategories()
     .filter((item) => item.slug !== category.slug);
-  dispatch('core/blocks').setCategories([category, ...currentCategories]);
+  console.log(currentCategories);
+  dispatch('core/blocks').setCategories([category, ...currentCategories.slice(0, 3)]);
   // TODO: Register each block
   registerBlockType(`${category.slug}/${block1.name}`, {
     category: category.slug,
     ...block1.settings
   });
-
-
 
   //register another blocks:
   registerBlockType(`${category.slug}/tu-test-block`, {
@@ -77,11 +76,8 @@ export function registerBlocks() {
       );
     }
   });
-
 }
 
 registerBlocks();
 
 // import { blocks, editor } from '@frontkom/gutenberg-js';
-
-
