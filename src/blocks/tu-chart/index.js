@@ -1,22 +1,18 @@
 // import { blocks, data, i18n } from 'wp';
-const { blocks, data, i18n } = window.wp;
+const { blocks, editor, data, i18n } = window.wp;
 const { registerBlockType } = blocks;
 const { dispatch, select } = data;
 const { __ } = i18n;
+const { AlignmentToolbar, BlockControls, RichText } = editor;
 
 // TODO: Import each block herer
 import * as block1 from './components';
-import RichText from '../advanced-rich-text-tools/dist/index.js';
 
 // Category name and slug
 
 const category = {
   slug: 'tssblocks', // needs to match the css class of the block container: ".wp-block-cloudblocks-[block-name]"
   title: __('TSS Blocks')
-};
-const category2 = {
-  slug: 'tssblocks', // needs to match the css class of the block container: ".wp-block-cloudblocks-[block-name]"
-  title: __('TSS Blocks2')
 };
 
 // Register the new category and blocks
@@ -31,6 +27,61 @@ export function registerBlocks() {
     category: category.slug,
     ...block1.settings
   });
+
+
+
+  //register another blocks:
+  registerBlockType(`${category.slug}/tu-test-block`, {
+    title: 'My first block',
+    icon: 'universal-access-alt',
+    category: 'tssblocks',
+    attributes: {
+      content: {
+        type: 'array',
+        source: 'children',
+        selector: 'p'
+      },
+      alignment: {
+        type: 'string'
+      }
+    },
+    edit({ attributes, className, setAttributes }) {
+      const { content, alignment } = attributes;
+
+      function onChangeContent(newContent) {
+        setAttributes({ content: newContent });
+      }
+
+      function onChangeAlignment(newAlignment) {
+        setAttributes({ alignment: newAlignment });
+      }
+
+      return [
+        <BlockControls>
+          <AlignmentToolbar value={alignment} onChange={onChangeAlignment} />
+        </BlockControls>,
+        <RichText
+          tagName="p"
+          className={className}
+          style={{ textAlign: alignment }}
+          onChange={onChangeContent}
+          value={content}
+        />
+      ];
+    },
+    save({ attributes, className }) {
+      const { content, alignment } = attributes;
+
+      return (
+        <RichText.Content className={className} style={{ textAlign: alignment }} value={content} />
+      );
+    }
+  });
+
 }
 
 registerBlocks();
+
+// import { blocks, editor } from '@frontkom/gutenberg-js';
+
+

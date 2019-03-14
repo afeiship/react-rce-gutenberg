@@ -13,30 +13,7 @@
 // @import '~@frontkom/gutenberg-js/build/css/block-library/style.css';
 // @import '~@frontkom/gutenberg-js/build/css/style.css';
 
-.hello-react-rce-gutenberg{
-  .button{
-    border: none;
-    display: block;
-    width:100%;
-    padding-left: 14px;
-    padding-right: 14px;
-    font-size: 18px;
-    text-align: center;
-    text-decoration: none;
-    overflow: visible;
-    height: 42px;
-    border-radius: 5px;
-    color: #ffffff;
-    line-height: 42px;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    background: #04be02;
-    margin-bottom: 15px;
-    &:active{
-      background: #3cc51f;
-    }
-
-    &:focus{
-      outline: none;
-    }
-  }
+.wp-block-verse {
+  border-left: 1px solid #f60;
+  background: #eee;
 }

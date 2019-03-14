@@ -38,6 +38,7 @@ export default class extends Component {
 
     // Disable tips
     data.dispatch('core/nux').disableTips();
+    // data.dispatch('core/edit-post').closeGeneralSidebar();
 
     // Initialize the editor
     window._wpLoadGutenbergEditor = new Promise(function(resolve) {
