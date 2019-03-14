@@ -12,6 +12,8 @@ import './style.scss';
 const { Fragment } = element;
 const { __ } = i18n;
 
+
+
 // TODO: Chooose components for the sidebar settings
 const { PanelBody } = components;
 const { InspectorControls } = editor;
@@ -19,6 +21,7 @@ const { InspectorControls } = editor;
 // console.log(editor);
 
 window.editor = editor;
+window.i18n = i18n;
 
 // TODO: Add here the editable block attributes
 const BLOCK_ATTRIBUTES = {
@@ -30,7 +33,7 @@ const BLOCK_ATTRIBUTES = {
   },
   tid: {
     type: 'string',
-    default: 'https://echarts.baidu.com/examples/editor.html?c=area-basic'
+    default: null
   }
 };
 
@@ -39,7 +42,7 @@ export const name = 'tu-chart';
 export const settings = {
   title: __('Tss Custom Block'),
   description: __('A custom block for Gutenberg tss-blocks'),
-  icon: <img width={32} src={'https://i.stack.imgur.com/qYN3I.png'} />,
+  icon: <img width={24} src={'https://i.stack.imgur.com/qYN3I.png'} />,
   attributes: BLOCK_ATTRIBUTES,
   edit({ attributes, className, setAttributes }) {
     const { title, description, tid } = attributes;
@@ -47,7 +50,12 @@ export const settings = {
     return (
       <Fragment>
         {/* Block markup (main editor) */}
-        <iframe className={className} width={'100%'} height={400} src={tid} frameBorder="0" />
+        <div className="tss-block">
+          {tid && (
+            <iframe className={className} width={'100%'} height={400} src={tid} frameBorder="0" />
+          )}
+          {!tid && <img width={'80%'} src="https://ws2.sinaimg.cn/large/006tKfTcly1g0zw9slwi2j30rs0jgwfb.jpg" />}
+        </div>
         <InspectorControls>
           {/* Block settings (sidebar) */}
           <PanelBody title={__('Settings')} initialOpen={false}>
@@ -83,12 +91,11 @@ export const settings = {
   },
 
   save({ attributes, className }) {
-    // const str = JSON.stringify(attributes);
-    // console.log(str, btoa(str));
-    console.log(attributes);
+    const { tid, ...extra } = attributes;
+    const str = JSON.stringify(extra);
     return (
       <div className={className}>
-        <tu-chart />
+        <tu-chart tid={tid} data-json={btoa(str)} />
       </div>
     );
   }

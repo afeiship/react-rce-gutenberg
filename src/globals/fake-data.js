@@ -13,7 +13,7 @@ export const pageType = {
 export const page = {
   id: 1,
   content: {
-    raw: '',
+    raw: '<!-- wp:verse --> <pre class="wp-block-verse"></pre> <!-- /wp:verse -->',
     rendered: ''
   },
   status: 'draft',
