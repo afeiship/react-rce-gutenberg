@@ -95,7 +95,7 @@ const { InnerBlocks } = wp.editor;
 
 const BLOCKS_TEMPLATE = [['core/image', {}], ['core/paragraph', { placeholder: 'Image Details' }]];
 
-registerBlockType('myplugin/template', {
+registerBlockType('tssblocks/template', {
   title: 'My Template Block',
   category: category2.slug,
   edit: (props) => {
@@ -109,9 +109,54 @@ registerBlockType('myplugin/template', {
   }
 });
 
-
-
-const currentCategories = select('core/blocks')
+const currentCategories = select('core/blocks');
 console.log(currentCategories);
 // wp.blocks.unregisterBlockStyle('core/embed');
 // wp.blocks.unregisterBlockType('core/embed');
+
+// ======= ======= ======= add customize formTypeBar:======= ======= ======= =======
+const { createElement, Fragment } = window.wp.element;
+const { registerFormatType, toggleFormat } = window.wp.richText;
+const { RichTextToolbarButton, RichTextShortcut } = window.wp.editor;
+
+[
+  {
+    name: 'tsscolor',
+    title: 'TSS color plate',
+    icon: 'cover-image',
+    character: ']'
+  }
+].forEach(({ name, title, character, icon }) => {
+  const type = `tss-plugins/${name}`;
+
+  console.log(name, title, character, icon);
+
+  registerFormatType(type, {
+    title,
+    tagName: name,
+    className: null,
+    edit({ isActive, value, onChange }) {
+      const onToggle = () => {
+        console.log('do something...');
+      };
+
+      return createElement(
+        Fragment,
+        null,
+        createElement(RichTextShortcut, {
+          type: 'primary',
+          character,
+          onUse: onToggle
+        }),
+        createElement(RichTextToolbarButton, {
+          title,
+          onClick: onToggle,
+          isActive,
+          shortcutType: 'primary',
+          shortcutCharacter: character,
+          className: `toolbar-button-with-text toolbar-button__advanced-${name}`
+        })
+      );
+    }
+  });
+});

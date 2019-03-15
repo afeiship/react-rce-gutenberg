@@ -1,8 +1,8 @@
 import './dev.scss';
 import './globals';
 import ReactRceGutenberg from './main';
-import './blocks/tu-chart'
-import './blocks/advanced-rich-text-tools/dist'
+import './blocks/tu-chart';
+import './blocks/advanced-rich-text-tools/dist';
 /*===example start===*/
 
 // install: npm install afeiship/react-rce-gutenberg --save
@@ -17,6 +17,7 @@ class App extends React.Component {
     );
   }
 }
+
 /*===example end===*/
 
 ReactDOM.render(<App />, document.getElementById('app'));

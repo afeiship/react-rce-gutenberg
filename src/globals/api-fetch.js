@@ -61,8 +61,8 @@ const apiFetch = (options) => {
       break;
   }
 
-  console.log('input:->', options);
-  console.log('output:->', res);
+  // console.log('input:->', options);
+  // console.log('output:->', res);
 
   return new Promise((resolve) => {
     resolve(res);
