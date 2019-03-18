@@ -4,7 +4,7 @@ const { registerBlockType } = blocks;
 const { dispatch, select } = data;
 const { __ } = i18n;
 const { AlignmentToolbar, BlockControls, RichText, FontSizePicker } = editor;
-const { Popover } = components;
+const { Popover, Dropdown, DropdownMenu } = components;
 import React from 'react';
 
 // TODO: Import each block herer
@@ -161,13 +161,13 @@ class MyFontSizePicker extends React.Component {
           onClick={this.onClick}
           isActive={this.props.isActive}
           shortcutType={'primary'}
-          className={`toolbar-button-with-text toolbar-button__advanced-tssfz`}
-        />
-        {this.state.isExpanded && (
-          <Popover focusOnMount={false}>
-            <FontSizePicker value={this.state.fontSize} onChange={this.onChange} />
-          </Popover>
-        )}
+          className={`toolbar-button-with-text toolbar-button__advanced-tssfz`}>
+          {this.state.isExpanded && (
+            <Popover focusOnMount={false}>
+              <FontSizePicker value={this.state.fontSize} onChange={this.onChange} />
+            </Popover>
+          )}
+        </RichTextToolbarButton>
       </Fragment>
     );
   }
@@ -226,7 +226,12 @@ class MyFontSizePicker extends React.Component {
       return (
         <Fragment>
           <RichTextShortcut type={'primary'} character={character} onUse={onToggle} />
-          <MyFontSizePicker isExpanded={isActive} fontSize={fontSize} isActive={isActive} onChange={onFontChange} />
+          <MyFontSizePicker
+            isExpanded={isActive}
+            fontSize={fontSize}
+            isActive={isActive}
+            onChange={onFontChange}
+          />
         </Fragment>
       );
     }

@@ -9,11 +9,14 @@
 // }
 
 @import './components/style.scss';
-@import "./blocks/advanced-rich-text-tools/index";
+@import './blocks/advanced-rich-text-tools/index';
 // // Gutenberg JS Style
 // @import '~@frontkom/gutenberg-js/build/css/block-library/style.css';
 // @import '~@frontkom/gutenberg-js/build/css/style.css';
 
+.p20 {
+  padding: 20px;
+}
 .wp-block-verse {
   border-left: 1px solid #f60;
   background: #eee;
