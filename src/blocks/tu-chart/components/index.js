@@ -40,24 +40,8 @@ export const name = 'tu-chart';
 export const settings = {
   title: __('Tss Custom Block'),
   description: __('A custom block for Gutenberg tss-blocks'),
-  icon: <img width={24} src={'https://i.stack.imgur.com/qYN3I.png'} />,
+  icon: <svg><path d="M5 4v3h5.5v12h3V7H19V4z" /></svg> ,
   attributes: BLOCK_ATTRIBUTES,
-  styles: [
-    // Mark style as default.
-    {
-      name: 'default',
-      label: __('Rounded'),
-      isDefault: true
-    },
-    {
-      name: 'outline',
-      label: __('Outline')
-    },
-    {
-      name: 'squared',
-      label: __('Squared')
-    }
-  ],
   edit({ attributes, className, setAttributes }) {
     const { title, description, tid } = attributes;
 
@@ -119,3 +103,6 @@ export const settings = {
     );
   }
 };
+
+
+// wp.blocks.getBlockTypes()

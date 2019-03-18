@@ -1,9 +1,11 @@
 // import { blocks, data, i18n } from 'wp';
-const { blocks, editor, data, i18n } = window.wp;
+const { blocks, editor, data, i18n, components } = window.wp;
 const { registerBlockType } = blocks;
 const { dispatch, select } = data;
 const { __ } = i18n;
-const { AlignmentToolbar, BlockControls, RichText } = editor;
+const { AlignmentToolbar, BlockControls, RichText, FontSizePicker } = editor;
+const { Popover } = components;
+import React from 'react';
 
 // TODO: Import each block herer
 import * as block1 from './components';
@@ -26,7 +28,6 @@ export function registerBlocks() {
   const currentCategories = select('core/blocks')
     .getCategories()
     .filter((item) => item.slug !== category.slug);
-  console.log(currentCategories);
   // dispatch('core/blocks').setCategories([category, ...currentCategories.slice(0, 4)]);
   dispatch('core/blocks').setCategories([category, category2, ...currentCategories]);
   // TODO: Register each block
@@ -116,46 +117,118 @@ console.log(currentCategories);
 
 // ======= ======= ======= add customize formTypeBar:======= ======= ======= =======
 const { createElement, Fragment } = window.wp.element;
-const { registerFormatType, toggleFormat } = window.wp.richText;
+const {
+  registerFormatType,
+  removeFormat,
+  getActiveFormat,
+  applyFormat,
+  toggleFormat
+} = window.wp.richText;
 const { RichTextToolbarButton, RichTextShortcut } = window.wp.editor;
+import { find } from 'lodash';
+// unregisterBlockType:
+
+class MyFontSizePicker extends React.Component {
+  state = {
+    fontSize: null,
+    isExpanded: false
+  };
+
+  componentWillUpdate(nextProps) {
+    console.log('new Props', nextProps);
+    if (this.state.fontSize !== nextProps.fontSize) {
+      this.setState({ fontSize: nextProps.fontSize });
+    }
+
+    if (this.state.isExpanded !== nextProps.isExpanded) {
+      this.setState({ isExpanded: nextProps.isExpanded });
+    }
+  }
+
+  onClick = (e) => {
+    this.setState({ isExpanded: true });
+  };
+
+  onChange = (e) => {
+    this.setState({ fontSize: e });
+    this.props.onChange(e);
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <RichTextToolbarButton
+          title="TSS font-size plate"
+          onClick={this.onClick}
+          isActive={this.props.isActive}
+          shortcutType={'primary'}
+          className={`toolbar-button-with-text toolbar-button__advanced-tssfz`}
+        />
+        {this.state.isExpanded && (
+          <Popover focusOnMount={false}>
+            <FontSizePicker value={this.state.fontSize} onChange={this.onChange} />
+          </Popover>
+        )}
+      </Fragment>
+    );
+  }
+}
 
 [
   {
-    name: 'tsscolor',
-    title: 'TSS color plate',
-    icon: 'cover-image',
+    name: 'tssfz',
+    title: 'TSS font-size plate',
+    icon: (
+      <svg>
+        <path d="M5 4v3h5.5v12h3V7H19V4z" />
+      </svg>
+    ),
     character: ']'
   }
 ].forEach(({ name, title, character, icon }) => {
   const type = `tss-plugins/${name}`;
 
-  console.log(name, title, character, icon);
-
   registerFormatType(type, {
     title,
     tagName: name,
     className: null,
+    attributes: {
+      style: 'style'
+    },
     edit({ isActive, value, onChange }) {
-      const onToggle = () => {
-        console.log('do something...');
+      const args = arguments;
+      const currentFormats = getActiveFormat(value, type);
+      const onToggle = (e) => {};
+      let fontSize = 13;
+
+      if (isActive) {
+        const activeFormat = getActiveFormat(value, type);
+        const style = activeFormat.attributes.style;
+      }
+
+      const onFontChange = (e) => {
+        onChange(
+          applyFormat(value, {
+            type,
+            attributes: {
+              style: `font-size:${e}px`
+            }
+          })
+        );
       };
 
-      return createElement(
-        Fragment,
-        null,
-        createElement(RichTextShortcut, {
-          type: 'primary',
-          character,
-          onUse: onToggle
-        }),
-        createElement(RichTextToolbarButton, {
-          title,
-          onClick: onToggle,
-          isActive,
-          shortcutType: 'primary',
-          shortcutCharacter: character,
-          className: `toolbar-button-with-text toolbar-button__advanced-${name}`
-        })
+      if (!currentFormats) {
+        removeFormat(value, type);
+        fontSize = null;
+      } else {
+        fontSize = parseInt(currentFormats.attributes.style.split(':')[1]) || null;
+      }
+
+      return (
+        <Fragment>
+          <RichTextShortcut type={'primary'} character={character} onUse={onToggle} />
+          <MyFontSizePicker isExpanded={isActive} fontSize={fontSize} isActive={isActive} onChange={onFontChange} />
+        </Fragment>
       );
     }
   });
