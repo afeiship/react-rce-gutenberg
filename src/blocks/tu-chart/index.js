@@ -135,7 +135,6 @@ class MyFontSizePicker extends React.Component {
   };
 
   componentWillUpdate(nextProps) {
-    console.log('new Props', nextProps);
     if (this.state.fontSize !== nextProps.fontSize) {
       this.setState({ fontSize: nextProps.fontSize });
     }
