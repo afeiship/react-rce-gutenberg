@@ -2,6 +2,7 @@ import './dev.scss';
 import './globals';
 import ReactRceGutenberg from './main';
 import './blocks/tu-chart';
+import './blocks/tu-column2/column';
 import './blocks/tu-column2';
 import './blocks/advanced-rich-text-tools/dist';
 /*===example start===*/

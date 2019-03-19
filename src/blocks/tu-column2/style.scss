@@ -1,17 +1,27 @@
 /**style Start**/
-.tu-column2-edit {
-  display: flex;
-  .editor-media-container__resizer {
-    border: 1px solid #ddd;
-    min-height: 120px;
-    &.left {
-      position: relative;
-      z-index: 2;
-      border-right: 6px dashed #ccc;
+.tu-column2 {
+  >.editor-inner-blocks {
+    > .editor-block-list__layout {
+      display: flex;
+      > .editor-block-list__block[data-type='tssblocks/column'] {
+        margin: 0;
+        display: block;
+        border: 1px solid #f60;
+        flex: 1;
+      }
     }
   }
-  .right {
-    flex: 1;
+}
+
+.resize-box {
+
+  height: 100%;
+  width: 50%;
+  border-right: 10px solid #060;
+  .resize-bar {
+    border: 1px solid #f00;
+    min-height: 50px;
   }
 }
+
 /**style  End**/
