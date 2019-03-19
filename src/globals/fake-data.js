@@ -34,7 +34,6 @@ export const getMedias = (n = 3) => {
     .fill('')
     .map((i, index) => {
       const id = index + 1;
-
       return {
         id,
         caption: { raw: '', rendered: '' },

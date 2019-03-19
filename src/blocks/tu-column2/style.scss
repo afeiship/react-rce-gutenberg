@@ -1,0 +1,17 @@
+/**style Start**/
+.tu-column2-edit {
+  display: flex;
+  .editor-media-container__resizer {
+    border: 1px solid #ddd;
+    min-height: 120px;
+    &.left {
+      position: relative;
+      z-index: 2;
+      border-right: 6px dashed #ccc;
+    }
+  }
+  .right {
+    flex: 1;
+  }
+}
+/**style  End**/

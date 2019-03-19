@@ -43,8 +43,8 @@ export default class extends Component {
     // Initialize the editor
     window._wpLoadGutenbergEditor = new Promise(function(resolve) {
       resolve(editPost.initializeEditor('editor', 'page', 1, settings, {}));
-      //wp.blocks.getBlockTypes()
-      // wp.blocks.unregisterBlockType('core/embed')
+      // wp.blocks.getBlockTypes();
+      // wp.blocks.unregisterBlockType('core/embed');
     });
   }
 

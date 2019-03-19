@@ -110,11 +110,6 @@ registerBlockType('tssblocks/template', {
   }
 });
 
-const currentCategories = select('core/blocks');
-console.log(currentCategories);
-// wp.blocks.unregisterBlockStyle('core/embed');
-// wp.blocks.unregisterBlockType('core/embed');
-
 // ======= ======= ======= add customize formTypeBar:======= ======= ======= =======
 const { createElement, Fragment } = window.wp.element;
 const {

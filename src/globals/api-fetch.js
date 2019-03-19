@@ -39,6 +39,7 @@ const apiFetch = (options) => {
       res = medias;
       break;
     case '/wp/v2/media':
+      // console.log('upload:->', options.body.get('file'));
       if (options.method === 'OPTIONS') {
         res = {
           headers: {
