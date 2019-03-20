@@ -23,14 +23,11 @@ export default class extends Component {
       titlePlaceholder: 'Add title',
       bodyPlaceholder: 'Insert your custom block',
       isRTL: false,
-      autosaveInterval: 10,
+      autosaveInterval: 20,
       canPublish: false,
       canSave: true,
       canAutosave: true,
-      mediaLibrary: false,
-      postLock: {
-        isLocked: false
-      }
+      mediaLibrary: false
     };
 
     // reset localStorage
@@ -41,8 +38,8 @@ export default class extends Component {
     // data.dispatch('core/edit-post').closeGeneralSidebar();
 
     // Initialize the editor
-    wp.i18n.setLocaleData(require('../data/cn_b.json'));
     window._wpLoadGutenbergEditor = new Promise(function(resolve) {
+      wp.i18n.setLocaleData(require('../data/cn_b.json'));
       resolve(editPost.initializeEditor('editor', 'page', 1, settings, {}));
     });
   }

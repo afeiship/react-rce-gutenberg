@@ -16,11 +16,6 @@ const { __ } = i18n;
 const { PanelBody } = components;
 const { InspectorControls } = editor;
 
-// console.log(editor);
-
-window.editor = editor;
-window.i18n = i18n;
-
 // TODO: Add here the editable block attributes
 const BLOCK_ATTRIBUTES = {
   title: {
