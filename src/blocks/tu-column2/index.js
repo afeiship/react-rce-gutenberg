@@ -20,7 +20,7 @@ const getColumnsTemplate = memoize((columns) => {
 });
 
 registerBlockType('tssblocks/columns', {
-  title: 'TssColumns',
+  title: __('TssColumns'),
   category: 'tssblocks',
   icon: 'cover-image',
   attributes: {
@@ -39,7 +39,9 @@ registerBlockType('tssblocks/columns', {
 
     const onResizeStop = (evt, dir, target, xx, yy) => {
       const width = $(target)[0].style.width;
-      $(target).next().find('[data-type="tssblocks/column"]')
+      $(target)
+        .next()
+        .find('[data-type="tssblocks/column"]')
         .eq(0)
         .css('flex', `0 0 ${width}`);
     };
@@ -66,7 +68,7 @@ registerBlockType('tssblocks/columns', {
             width: '50%'
           }}
           axis="x">
-          <div className={'resize-bar'}>RESIE</div>
+          <div className={'resize-bar'}>{__('RESIXE')}</div>
         </Resizable>
         <InnerBlocks
           className={'tu-columns-inner-blocks'}
@@ -81,6 +83,9 @@ registerBlockType('tssblocks/columns', {
   save({ attributes }) {
     const { columns } = attributes;
 
+    // console.log(InnerBlocks === wp.editor.InnerBlocks);
+    // console.log(window.wp.i18n.__('TEST'));
+
     return (
       <div className={`has-${columns}-columns`}>
         <InnerBlocks.Content />
@@ -88,3 +93,26 @@ registerBlockType('tssblocks/columns', {
     );
   }
 });
+
+var el = wp.element.createElement;
+
+var withClientIdClassName = wp.compose.createHigherOrderComponent(function(BlockListBlock) {
+  return function(props) {
+    var newProps = Object.assign({}, props, {
+      className: 'block-' + props.clientId + ' feixxx'
+    });
+
+    return (
+      <Fragment>
+        <BlockListBlock {...newProps} />
+        <div className={'footer for overrdd'}>JUST MY CUSTOMIZE</div>
+      </Fragment>
+    );
+  };
+}, 'withClientIdClassName');
+
+wp.hooks.addFilter(
+  'editor.BlockListBlock',
+  'my-plugin/with-client-id-class-name',
+  withClientIdClassName
+);
