@@ -42,3 +42,4 @@ BACKUP_USAGE
 ## wp plugin:
 - http://jschof.com/gutenberg-blocks/using-canvas-to-create-a-doodle-pad-gutenberg-block/
 - https://github.com/ahmadawais/create-guten-block
+- https://wordpress-dot-org.ext.jsproxy.tk/support/topic/how-to-override-options-of-gutenberg-core-components/

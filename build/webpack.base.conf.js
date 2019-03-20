@@ -94,6 +94,10 @@ module.exports = {
         loader: 'html-loader'
       },
       {
+        test: /\.(json)$/,
+        loader: 'json-loader'
+      },
+      {
         test: /\.js|jsx$/,
         loaders: ['react-hot-loader/webpack', 'babel-loader?presets[]=react,presets[]=es2015'],
         include: path.join(__dirname, 'js')

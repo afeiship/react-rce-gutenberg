@@ -41,10 +41,9 @@ export default class extends Component {
     // data.dispatch('core/edit-post').closeGeneralSidebar();
 
     // Initialize the editor
+    wp.i18n.setLocaleData(require('../data/cn_b.json'));
     window._wpLoadGutenbergEditor = new Promise(function(resolve) {
       resolve(editPost.initializeEditor('editor', 'page', 1, settings, {}));
-      // wp.blocks.getBlockTypes();
-      // wp.blocks.unregisterBlockType('core/embed');
     });
   }
 
