@@ -2,7 +2,7 @@ build
 src
 config
 static
-.babelrc
+docs/.babelrc
 .gitignore
 yarn.lock
 test
